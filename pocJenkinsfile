@@ -23,7 +23,7 @@ pipeline {
             steps {
                dir("/msa") {
                sh '''
-                   ./clean.sh
+                   ./clean.sh  >/dev/null 2>&1
                    oc apply -f pvclaim.yml
                    oc new-app --name=postgres-database --template=postgresql-persistent --param=DATABASE_SERVICE_NAME=postgres-database --param=POSTGRESQL_USER=sa --param=POSTGRESQL_PASSWORD=sa --param=POSTGRESQL_DATABASE=person 
                 '''
