@@ -9,3 +9,4 @@ oc delete secret postgres-database
 oc delete svc postgres-database
 oc delete dc postgres-database
 oc delete pvc postgres-database
+echo "all clear"
