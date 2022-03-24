@@ -1,0 +1,36 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-database
+  namespace: msa
+  labels:
+    template: postgresql-persistent-template
+  finalizers:
+    - kubernetes.io/pvc-protection
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:template': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          'f:accessModes': {}
+          'f:resources':
+            'f:requests':
+              .: {}
+              'f:storage': {}
+          'f:volumeMode': {}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  storageClassName: managed-nfs-storage
+
