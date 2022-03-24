@@ -18,6 +18,7 @@ pipeline {
                 sh 'git clone git@github.com:george-palsys/msa.git'
                 }
             }
+			}
         stage ('deploy postgresql-persistent') {
             steps {
                dir("/msa") {
@@ -29,7 +30,8 @@ pipeline {
                }
               }
             }
-        }
+			
+        
         stage('Create Application') { 
             steps {
                  sh '''
