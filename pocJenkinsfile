@@ -38,10 +38,6 @@ pipeline {
                 }
             }
                         
-        stage("synsc javaapp") {
-            steps {
-                sh echo first test
-            }
             }
       }
     }
