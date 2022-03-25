@@ -24,7 +24,7 @@ pipeline {
                dir("/msa") {
                sh '''
                    ./clean.sh  >/dev/null 2>&1
-                   oc apply -f pvclaim.yml
+                   oc apply -f postgres.ymal
                 '''
                }
               }
