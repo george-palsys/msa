@@ -25,7 +25,6 @@ pipeline {
                sh '''
                    ./clean.sh  >/dev/null 2>&1
                    oc apply -f pvclaim.yml
-                   oc new-app --name=postgres-database --template=postgresql-persistent --param=DATABASE_SERVICE_NAME=postgres-database --param=POSTGRESQL_USER=sa --param=POSTGRESQL_PASSWORD=sa --param=POSTGRESQL_DATABASE=person 
                 '''
                }
               }
@@ -35,7 +34,7 @@ pipeline {
         stage('Create Application') { 
             steps {
                  sh '''
-                     oc new-app --name=postgres-database --template=postgresql-persistent --param=DATABASE_SERVICE_NAME=postgres-database --param=POSTGRESQL_USER=sa --param=POSTGRESQL_PASSWORD=sa --param=POSTGRESQL_DATABASE=person
+                    oc new-app java:openjdk-11-el7~https://github.com/cheyang0323/msa-test.git --labels="app.kubernetes.io/part-of=msa-test-git-app,app=msa-test-git,version=v1" --name=msa-test-git
                  '''
                 }
             }            
